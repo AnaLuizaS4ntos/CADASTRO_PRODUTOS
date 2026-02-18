@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Produto</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url("{{ url_for('static', filename='imagem/fundo.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="fundo">
+    <div class="painel">
+        <h1>Editar Produto: {{ produto.name }}</h1>
+        <form method="POST">
+            <div class="form-grid">
+                <div class="input-tabela">
+                  <label>SKU:</label>
+                  <input type="text" name="sku" value="{{ produto.sku }}">
+                </div>
+                <div class="input-tabela">
+                  <label>Nome:</label>
+                  <input type="text" name="name" value="{{ produto.name }}">
+                </div>
+                <div class="input-tabela">
+                  <label>Categoria:</label>
+                  <input type="text" name="category" value="{{ produto.category }}">
+                </div>
+                <div class="input-tabela">
+                  <label>Cor:</label>
+                  <input type="text" name="color" value="{{ produto.color }}">
+                </div>
+                <div class="input-tabela">
+                  <label>Estoque:</label>
+                  <input type="number" name="estoque" value="{{ produto.estoque }}">
+                </div>
+                <div class="input-tabela">
+                  <label>Preço:</label>
+                  <input type="text" name="price" value="{{ produto.price }}">
+                </div>
+                <button type="submit">Salvar Alterações</button>
+            </div>
+        </form>
+        <br>
+        <a href="/" type="submit">← Voltar sem salvar</a>
+    </div>
+</div>
+</body>
+</html>

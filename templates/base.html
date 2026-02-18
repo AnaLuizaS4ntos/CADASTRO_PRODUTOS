@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url("{{ url_for('static', filename='imagem/fundo.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
+</style>
+<body>
+<div class="fundo" >
+    <div class="painel">
+        <h1>Cadastro de Produtos</h1>
+        <form action="/cadastrar" method="POST">
+            <div class="form-grid">
+                <div class="input-tabela">
+                    <label>SKU: </label>
+                    <input type="text" name="sku" required>
+                </div>
+                <div class="input-tabela">
+                    <label>Categoria: </label>
+                    <input type="text" name="category">
+                </div>
+                <div class="input-tabela">
+                    <label>Nome: </label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="input-tabela">
+                    <label>Cor: </label>
+                    <input type="text" name="color">
+                </div>
+                <div class="input-tabela">
+                    <label>Estoque: </label>
+                    <input type="number" name="estoque">
+                </div>
+                <div class="input-tabela">
+                    <label>Preço: </label>
+                    <input type="number" name="price">
+                </div>
+                <button type="submit">Cadastrar no Inventário</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="painel-tabela">
+    <table>
+        <h1>Produtos cadastrados</h1>
+        <div class="form-grid">
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>Categoria</th>
+                    <th>Nome</th>
+                    <th>Cor</th>
+                    <th>Estoque</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.sku }}</td>
+                <td>{{ produto.category }}</td>
+                <td>{{ produto.name }}</td>
+                <td>{{ produto.color }}</td>
+                <td>{{ produto.estoque }}</td>
+                <td>{{ produto.price }}</td>
+                <td>
+                    <a href="{{ url_for('editar', id=produto.id) }}" style="color: #bcf521; text-decoration: none; margin-right: 10px;">Editar</a>
+                    <a href="{{ url_for('deletar', id=produto.id) }}" style="color: #ff4444; text-decoration: none;" onclick="return confirm('Apagar?')">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+</div>
+
+<footer class="site-footer">
+    <div>
+        <p style="color: #888;">&copy; 2026 <strong>Nebbia Inventory</strong></p>
+        <p style="color: #666; font-size: 0.9em;">
+            Code & Design by
+            <a href="https://github.com/AnaLuizaS4ntos" target="_blank" style="color: #bcf521; text-decoration: none;">Ana Luíza Santos</a>
+        </p>
+    </div>
+</footer>
+</body>
+</html>
